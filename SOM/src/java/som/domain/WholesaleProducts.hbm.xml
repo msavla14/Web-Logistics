@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.WholesaleProducts" table="wholesale_products" catalog="logisticsdb" lazy="false">
+        <id name="whProdId" type="java.lang.Long">
+            <column name="wh_prod_id" />
+            <generator class="identity" />
+        </id>
+        <property name="whProdName" type="string">
+            <column name="wh_prod_name" />
+        </property>
+        <property name="whProdDesc" type="string">
+            <column name="wh_prod_desc" length="1000" />
+        </property>
+        <property name="whProdCatg" type="string">
+            <column name="wh_prod_catg" length="30" />
+        </property>
+        <property name="whSubCatg" type="string">
+            <column name="wh_sub_catg" length="45" />
+        </property>
+        <property name="whDependProdId" type="java.lang.Long">
+            <column name="wh_depend_prod_id" />
+        </property>
+        <property name="rtProdId" type="java.lang.Long">
+            <column name="rt_prod_id" />
+        </property>
+        <set name="wholesalerProductsStocks" inverse="true">
+            <key>
+                <column name="wh_prod_id" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.WholesalerProductsStock" />
+        </set>
+    </class>
+</hibernate-mapping>

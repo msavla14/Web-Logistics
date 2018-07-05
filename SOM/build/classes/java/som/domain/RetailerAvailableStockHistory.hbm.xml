@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.RetailerAvailableStockHistory" table="retailer_available_stock_history" catalog="logisticsdb" >
+        <id name="rtAvStockHistoryId" type="java.lang.Long">
+            <column name="rt_av_stock_history_id" />
+            <generator class="identity" />
+        </id>
+        <property name="rtId" type="long">
+            <column name="rt_id" not-null="true" />
+        </property>
+        <property name="rtProdId" type="long">
+            <column name="rt_prod_id" not-null="true" />
+        </property>
+        <property name="rtStockAvailableQnty" type="java.lang.Integer">
+            <column name="rt_stock_available_qnty" />
+        </property>
+        <property name="rtHistoryDate" type="date">
+            <column name="rt_history_date" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

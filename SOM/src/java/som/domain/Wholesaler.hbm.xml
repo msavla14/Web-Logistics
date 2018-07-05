@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.Wholesaler" table="wholesaler" catalog="logisticsdb" lazy="false">
+        <id name="whId" type="java.lang.Long">
+            <column name="wh_id" />
+            <generator class="identity" />
+        </id>
+        <property name="whName" type="string">
+            <column name="wh_name" length="50" />
+        </property>
+        <property name="whAddress" type="string">
+            <column name="wh_address" />
+        </property>
+        <property name="whCity" type="string">
+            <column name="wh_city" length="30" />
+        </property>
+        <property name="whContactNo" type="string">
+            <column name="wh_contact_no" length="20" />
+        </property>
+        <property name="whEmail" type="string">
+            <column name="wh_email" length="45" />
+        </property>
+        <set name="wholesalerProductsStocks" inverse="true">
+            <key>
+                <column name="wh_id" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.WholesalerProductsStock" />
+        </set>
+    </class>
+</hibernate-mapping>

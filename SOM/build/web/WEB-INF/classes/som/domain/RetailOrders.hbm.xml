@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.RetailOrders" table="retail_orders" catalog="logisticsdb" lazy="false">
+        <id name="rtOrdNo" type="java.lang.Long">
+            <column name="rt_ord_no" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="retailerProductsStock" class="som.domain.RetailerProductsStock" fetch="select">
+            <column name="rt_id" not-null="true" />
+            <column name="rt_prod_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="consumer" class="som.domain.Consumer" fetch="select">
+            <column name="cons_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="retailOrderStatus" class="som.domain.RetailOrderStatus" fetch="select">
+            <column name="rt_status_id" not-null="true" />
+        </many-to-one>
+        <property name="rtOrdQnty" type="java.lang.Integer">
+            <column name="rt_ord_qnty" />
+        </property>
+        <property name="rtOrdPrice" type="java.lang.Double">
+            <column name="rt_ord_price" precision="22" scale="0" />
+        </property>
+        <property name="rtOrderDate" type="date">
+            <column name="rt_order_date" length="10" />
+        </property>
+        <set name="retailDeliveries" inverse="true">
+            <key>
+                <column name="rt_ord_no" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.RetailDelivery" />
+        </set>
+    </class>
+</hibernate-mapping>

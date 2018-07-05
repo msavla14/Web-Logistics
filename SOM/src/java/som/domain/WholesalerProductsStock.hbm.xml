@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.WholesalerProductsStock" table="wholesaler_products_stock" catalog="logisticsdb" lazy="false">
+        <composite-id name="id" class="som.domain.WholesalerProductsStockId">
+            <key-property name="whId" type="long">
+                <column name="wh_id" />
+            </key-property>
+            <key-property name="whProdId" type="long">
+                <column name="wh_prod_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="wholesaler" class="som.domain.Wholesaler" update="false" insert="false" fetch="select">
+            <column name="wh_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wholesaleProducts" class="som.domain.WholesaleProducts" update="false" insert="false" fetch="select">
+            <column name="wh_prod_id" not-null="true" />
+        </many-to-one>
+        <property name="whStockUpThrQnty" type="java.lang.Integer">
+            <column name="wh_stock_up_thr_qnty" />
+        </property>
+        <property name="whStockLowThrQnty" type="java.lang.Integer">
+            <column name="wh_stock_low_thr_qnty" />
+        </property>
+        <property name="whStockAvailableQnty" type="java.lang.Integer">
+            <column name="wh_stock_available_qnty" />
+        </property>
+        <property name="whStockOrderedQnty" type="java.lang.Integer">
+            <column name="wh_stock_ordered_qnty" />
+        </property>
+        <property name="whProdCostPrice" type="java.lang.Double">
+            <column name="wh_prod_cost_price" precision="22" scale="0" />
+        </property>
+        <property name="whProdSellPrice" type="java.lang.Double">
+            <column name="wh_prod_sell_price" precision="22" scale="0" />
+        </property>
+        <property name="whProdMarginPrice" type="java.lang.Double">
+            <column name="wh_prod_margin_price" precision="22" scale="0" />
+        </property>
+        <property name="whProdPriceCurrency" type="string">
+            <column name="wh_prod_price_currency" length="5" />
+        </property>
+        <property name="whProdMarginPercentage" type="java.lang.Float">
+            <column name="wh_prod_margin_percentage" precision="12" scale="0" />
+        </property>
+        <property name="whMaxDeliveryDays" type="java.lang.Integer">
+            <column name="wh_max_delivery_days" />
+        </property>
+        <property name="whMinDeliveryDays" type="java.lang.Integer">
+            <column name="wh_min_delivery_days" />
+        </property>
+        <property name="whMaxQntyStorage" type="java.lang.Integer">
+            <column name="wh_max_qnty_storage" />
+        </property>
+        <property name="whProdQntySold" type="java.lang.Integer">
+            <column name="wh_prod_qnty_sold" />
+        </property>
+        <set name="wholesaleOrderses" inverse="true">
+            <key>
+                <column name="wh_id" not-null="true" />
+                <column name="wh_prod_id" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.WholesaleOrders" />
+        </set>
+    </class>
+</hibernate-mapping>

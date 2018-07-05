@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="logisticsdb"/>
+  <table-filter match-name="retailer"/>
+  <table-filter match-name="retail_delivery"/>
+  <table-filter match-name="wholesale_order_status"/>
+  <table-filter match-name="wholesale_products"/>
+  <table-filter match-name="retailer_products_stock"/>
+  <table-filter match-name="wholesaler_products_stock"/>
+  <table-filter match-name="wholesale_delivery"/>
+  <table-filter match-name="retailer_available_stock_history"/>
+  <table-filter match-name="retail_order_status"/>
+  <table-filter match-name="consumer"/>
+  <table-filter match-name="wholesaler"/>
+  <table-filter match-name="wholesale_orders"/>
+  <table-filter match-name="retail_products"/>
+  <table-filter match-name="retail_orders"/>
+</hibernate-reverse-engineering>

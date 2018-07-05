@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.RetailerProductsStock" table="retailer_products_stock" catalog="logisticsdb" lazy="false">
+        <composite-id name="id" class="som.domain.RetailerProductsStockId">
+            <key-property name="rtId" type="long">
+                <column name="rt_id" />
+            </key-property>
+            <key-property name="rtProdId" type="long">
+                <column name="rt_prod_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="retailer" class="som.domain.Retailer" update="false" insert="false" fetch="select">
+            <column name="rt_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="retailProducts" class="som.domain.RetailProducts" update="false" insert="false" fetch="select">
+            <column name="rt_prod_id" not-null="true" />
+        </many-to-one>
+        <property name="rtStockUpThrQnty" type="java.lang.Integer">
+            <column name="rt_stock_up_thr_qnty" />
+        </property>
+        <property name="rtStockLowThrQnty" type="java.lang.Integer">
+            <column name="rt_stock_low_thr_qnty" />
+        </property>
+        <property name="rtStockAvailableQnty" type="java.lang.Integer">
+            <column name="rt_stock_available_qnty" />
+        </property>
+        <property name="rtStockOrderedQnty" type="java.lang.Integer">
+            <column name="rt_stock_ordered_qnty" />
+        </property>
+        <property name="rtProdCostPrice" type="java.lang.Double">
+            <column name="rt_prod_cost_price" precision="22" scale="0" />
+        </property>
+        <property name="rtProdSellPrice" type="java.lang.Double">
+            <column name="rt_prod_sell_price" precision="22" scale="0" />
+        </property>
+        <property name="rtProdMarginPrice" type="java.lang.Double">
+            <column name="rt_prod_margin_price" precision="22" scale="0" />
+        </property>
+        <property name="rtProdPriceCurrency" type="string">
+            <column name="rt_prod_price_currency" length="5" />
+        </property>
+        <property name="rtProdMarginPercentage" type="java.lang.Float">
+            <column name="rt_prod_margin_percentage" precision="12" scale="0" />
+        </property>
+        <property name="rtMaxDeliveryDays" type="java.lang.Integer">
+            <column name="rt_max_delivery_days" />
+        </property>
+        <property name="rtMinDeliveryDays" type="java.lang.Integer">
+            <column name="rt_min_delivery_days" />
+        </property>
+        <property name="rtMaxQntyStorage" type="java.lang.Integer">
+            <column name="rt_max_qnty_storage" />
+        </property>
+        <property name="rtProdQntySold" type="java.lang.Integer">
+            <column name="rt_prod_qnty_sold" />
+        </property>
+        <set name="retailOrderses" inverse="true">
+            <key>
+                <column name="rt_id" not-null="true" />
+                <column name="rt_prod_id" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.RetailOrders" />
+        </set>
+    </class>
+</hibernate-mapping>

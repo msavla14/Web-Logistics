@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.Consumer" table="consumer" catalog="logisticsdb" lazy="false">
+        <id name="consId" type="java.lang.Long">
+            <column name="cons_id" />
+            <generator class="identity" />
+        </id>
+        <property name="consName" type="string">
+            <column name="cons_name" length="50" />
+        </property>
+        <property name="consAddress" type="string">
+            <column name="cons_address" />
+        </property>
+        <property name="consCity" type="string">
+            <column name="cons_city" length="30" />
+        </property>
+        <property name="consContactNo" type="string">
+            <column name="cons_contact_no" length="20" />
+        </property>
+        <property name="consEmail" type="string">
+            <column name="cons_email" length="45" />
+        </property>
+        <set name="retailOrderses" inverse="true">
+            <key>
+                <column name="cons_id" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.RetailOrders" />
+        </set>
+    </class>
+</hibernate-mapping>

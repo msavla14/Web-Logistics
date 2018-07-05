@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2010 11:05:56 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="som.domain.RetailProducts" table="retail_products" catalog="logisticsdb" lazy="false">
+        <id name="rtProdId" type="java.lang.Long">
+            <column name="rt_prod_id" />
+            <generator class="identity" />
+        </id>
+        <property name="rtProdName" type="string">
+            <column name="rt_prod_name" />
+        </property>
+        <property name="rtProdDesc" type="string">
+            <column name="rt_prod_desc" length="1000" />
+        </property>
+        <property name="rtProdCatg" type="string">
+            <column name="rt_prod_catg" length="30" />
+        </property>
+        <property name="rtProdSubCatg" type="string">
+            <column name="rt_prod_sub_catg" length="45" />
+        </property>
+        <property name="rtDependProdId" type="java.lang.Long">
+            <column name="rt_depend_prod_id" />
+        </property>
+        <set name="retailerProductsStocks" inverse="true">
+            <key>
+                <column name="rt_prod_id" not-null="true" />
+            </key>
+            <one-to-many class="som.domain.RetailerProductsStock" />
+        </set>
+    </class>
+</hibernate-mapping>

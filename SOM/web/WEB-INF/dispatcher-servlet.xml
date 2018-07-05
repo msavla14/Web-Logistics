@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+  <!--  <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+            </props>
+        </property>
+    </bean>-->
+    
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+    
+    <!--
+    The index controller.
+    --><!--
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
+          -->
+
+    <!-- Controllers Properties-->
+    <bean name="classify.htm" class="som.controllers.ClassifyController">
+        <property name="commonManager" ref="commonManager"/>
+    </bean>
+
+    <bean name="contact.htm" class="som.controllers.ContactController"/>
+
+    <bean name="wholesaleproducts.htm" class="som.controllers.WholesaleProductsController">
+        <property name="commandName" value="WholesaleProducts"/>
+        <property name="commandClass" value="som.domain.WholesaleProducts"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="wholesaleProducts"/>
+        <property name="successView" value="wholesaleProducts.htm"/>
+        <property name="commonManager" ref="commonManager"/>
+        <!--<property name="validator">
+            <bean class="com.weblogis.validator.ProductsValidator" />
+        </property>-->
+    </bean>
+    <bean name="retailproducts.htm" class="som.controllers.RetailProductsController">
+        <property name="commandName" value="RetailProducts"/>
+        <property name="commandClass" value="som.domain.RetailProducts"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="retailProducts"/>
+        <property name="successView" value="retailProducts.htm"/>
+        <property name="commonManager" ref="commonManager"/>
+        <!--<property name="validator">
+            <bean class="com.weblogis.validator.ProductsValidator" />
+        </property>-->
+    </bean>
+
+    <bean name="wholesaleproductsuppliers.htm" class="som.controllers.WholesaleProductSuppliersController">
+        <property name="commandName" value="WholesalerProductsStock"/>
+        <property name="commandClass" value="som.domain.WholesalerProductsStock"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="wholesaleProductSuppliers"/>
+        <property name="successView" value="wholesaleProductSuppliers"/>
+        <property name="commonManager" ref="commonManager"/>
+        <!--<property name="validator">
+            <bean class="com.weblogis.validator.ProductsValidator" />
+        </property>-->
+    </bean>
+
+    <bean name="retailproductsuppliers.htm" class="som.controllers.RetailProductSuppliersController">
+        <property name="commandName" value="RetailerProductsStock"/>
+        <property name="commandClass" value="som.domain.RetailerProductsStock"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="retailProductSuppliers"/>
+        <property name="successView" value="retailProductSuppliers"/>
+        <property name="commonManager" ref="commonManager"/>
+        <!--<property name="validator">
+            <bean class="com.weblogis.validator.ProductsValidator" />
+        </property>-->
+    </bean>
+
+    <bean name="wholesaleranalysis.htm" class="som.controllers.WholesalerAnalysisController">
+        <property name="commandName" value="WholesalerProductsStock"/>
+        <property name="commandClass" value="som.domain.WholesalerProductsStock"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="wholesalerAnalysis"/>
+        <property name="successView" value="wholesalerAnalysis"/>
+        <property name="commonManager" ref="commonManager"/>
+        <!--<property name="validator">
+            <bean class="com.weblogis.validator.ProductsValidator" />
+        </property>-->
+    </bean>
+    <bean name="retaileranalysis.htm" class="som.controllers.RetailerAnalysisController">
+        <property name="commandName" value="RetailerProductsStock"/>
+        <property name="commandClass" value="som.domain.RetailerProductsStock"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="retailerAnalysis"/>
+        <property name="successView" value="retailerAnalysis"/>
+        <property name="commonManager" ref="commonManager"/>
+        <!--<property name="validator">
+            <bean class="com.weblogis.validator.ProductsValidator" />
+        </property>-->
+    </bean>
+
+    <bean name="retailerprofitmargins.htm" class="som.controllers.RetailerProfitMarginsController">
+        <property name="commandName" value="RetailerProductsStock"/>
+        <property name="commandClass" value="som.domain.RetailerProductsStock"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="retailerProfitMargins"/>
+        <property name="successView" value="retailerProfitMargins"/>
+        <property name="commonManager" ref="commonManager"/>
+        <property name="validator">
+            <bean class="som.validator.RetailMarginAnalysisValidator" />
+        </property>
+    </bean>
+    <bean name="retailsalesanalysis.htm" class="som.controllers.RetailSalesAnalysisController">
+        <property name="commandName" value="RetailAnalysisWrapper"/>
+        <property name="commandClass" value="som.domain.RetailAnalysisWrapper"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="retailSalesAnalysis"/>
+        <property name="successView" value="retailSalesAnalysis"/>
+        <property name="commonManager" ref="commonManager"/>
+        <property name="validator">
+            <bean class="som.validator.RetailAnalysisValidator" />
+        </property>
+    </bean>
+   <bean name="retailsalesforecastinganalysis.htm" class="som.controllers.RetailSalesForecastingAnalysisController">
+        <property name="commandName" value="RetailAnalysisWrapper"/>
+        <property name="commandClass" value="som.domain.RetailAnalysisWrapper"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="formView" value="retailSalesForecastingAnalysis"/>
+        <property name="successView" value="retailSalesForecastingAnalysis"/>
+        <property name="commonManager" ref="commonManager"/>
+        <property name="validator">
+            <bean class="som.validator.RetailSalesForecastingValidator" />
+        </property>
+    </bean>
+    <bean name="placewholesaleorders.htm" class="som.controllers.PlaceWholesaleOrdersController">
+        <property name="commandName" value="wholesaleOrders"/>
+        <property name="commandClass" value="som.domain.WholesaleOrders"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="commonManager" ref="commonManager"/>
+        <property name="formView" value="placeWholesaleOrders"/>
+        <property name="successView" value="redirect:/wholesaleproducts.htm"/>
+        <property name="validator">
+            <bean class="som.validator.WholesaleOrdersValidator" />
+        </property>
+    </bean>
+
+    <bean name="placeretailorders.htm" class="som.controllers.PlaceRetailOrdersController">
+        <property name="commandName" value="retailOrders"/>
+        <property name="commandClass" value="som.domain.RetailOrders"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="commonManager" ref="commonManager"/>
+        <property name="formView" value="placeRetailOrders"/>
+        <property name="successView" value="redirect:/retailproducts.htm"/>
+        <property name="validator">
+            <bean class="som.validator.RetailOrdersValidator" />
+        </property>
+    </bean>
+
+<!-- Dao & Services configuration Properties-->
+    <bean id="commonManager" class="som.service.impl.CommonManagerImpl">
+        <property name="commonDao" ref="commonDao"/>
+    </bean>
+    <bean id="commonDao" class="som.dao.impl.CommonDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+<!-- Message Property -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+</beans>
